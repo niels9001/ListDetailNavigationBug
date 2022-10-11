@@ -1,0 +1,44 @@
+﻿<Page
+    x:Class="App1.ListDetailsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:App1"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:listdetail="using:App1.ListDetail"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+  
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0">
+            <Run>Frame.CanGoBack = </Run>
+            <Run Text="{x:Bind Frame.CanGoBack, Mode=OneWay}" />
+            </TextBlock>
+        <listdetail:ListDetailsView
+            Grid.Row="1"
+            Margin="0,48,0,0"
+            BackButtonBehavior="Automatic"
+            ItemsSource="{x:Bind items}"
+            ViewStateChanged="ListDetailsView_ViewStateChanged">
+            <listdetail:ListDetailsView.ItemTemplate>
+                    <DataTemplate x:DataType="local:Detail">
+                        <StackPanel>
+                            <TextBlock Text="{x:Bind Name}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </listdetail:ListDetailsView.ItemTemplate>
+            <listdetail:ListDetailsView.DetailsTemplate>
+                    <DataTemplate x:DataType="local:Detail">
+                        <StackPanel>
+                            <TextBlock Text="{x:Bind ID}" />
+                            <TextBlock Text="{x:Bind Name}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </listdetail:ListDetailsView.DetailsTemplate>
+            </listdetail:ListDetailsView>
+        </Grid>
+</Page>
